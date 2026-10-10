@@ -1,0 +1,140 @@
+{
+  "sample_rate": 44100,
+  "codec": "mp3",
+  "bitrate_kbps": 96,
+  "origin": "original procedural instrumental compositions",
+  "tracks": [
+    {
+      "file": "overview.mp3",
+      "tempo_bpm": 72,
+      "duration_seconds": 40.0,
+      "peak_dbfs": -8.46,
+      "rms_dbfs": -22.0,
+      "boundary_sample_delta": 0.000769,
+      "decoded_peak_dbfs": -8.89,
+      "decoded_samples": 1764000,
+      "boundary_rms_dbfs": -26.07,
+      "bytes": 481060
+    },
+    {
+      "file": "bac-bo.mp3",
+      "tempo_bpm": 76,
+      "duration_seconds": 37.895,
+      "peak_dbfs": -8.54,
+      "rms_dbfs": -22.0,
+      "boundary_sample_delta": 0.003036,
+      "decoded_peak_dbfs": -8.97,
+      "decoded_samples": 1671158,
+      "boundary_rms_dbfs": -24.44,
+      "bytes": 455667
+    },
+    {
+      "file": "tay-bac.mp3",
+      "tempo_bpm": 80,
+      "duration_seconds": 36.0,
+      "peak_dbfs": -8.39,
+      "rms_dbfs": -22.0,
+      "boundary_sample_delta": 0.003452,
+      "decoded_peak_dbfs": -8.85,
+      "decoded_samples": 1587600,
+      "boundary_rms_dbfs": -25.67,
+      "bytes": 433098
+    },
+    {
+      "file": "hue-trung-bo.mp3",
+      "tempo_bpm": 68,
+      "duration_seconds": 42.353,
+      "peak_dbfs": -8.59,
+      "rms_dbfs": -22.0,
+      "boundary_sample_delta": 0.001045,
+      "decoded_peak_dbfs": -9.02,
+      "decoded_samples": 1867765,
+      "boundary_rms_dbfs": -24.75,
+      "bytes": 509276
+    },
+    {
+      "file": "tay-nguyen.mp3",
+      "tempo_bpm": 80,
+      "duration_seconds": 36.0,
+      "peak_dbfs": -8.37,
+      "rms_dbfs": -22.0,
+      "boundary_sample_delta": 0.003131,
+      "decoded_peak_dbfs": -8.82,
+      "decoded_samples": 1587600,
+      "boundary_rms_dbfs": -23.74,
+      "bytes": 433101
+    },
+    {
+      "file": "nam-bo.mp3",
+      "tempo_bpm": 76,
+      "duration_seconds": 37.895,
+      "peak_dbfs": -7.48,
+      "rms_dbfs": -22.0,
+      "boundary_sample_delta": 0.001994,
+      "decoded_peak_dbfs": -7.93,
+      "decoded_samples": 1671158,
+      "boundary_rms_dbfs": -23.66,
+      "bytes": 455667
+    },
+    {
+      "file": "thu-do.mp3",
+      "tempo_bpm": 66,
+      "duration_seconds": 43.636,
+      "peak_dbfs": -7.46,
+      "rms_dbfs": -22.0,
+      "boundary_sample_delta": 0.000996,
+      "decoded_peak_dbfs": -7.9,
+      "decoded_samples": 1924364,
+      "boundary_rms_dbfs": -26.85,
+      "bytes": 524630
+    },
+    {
+      "file": "trang-chu.mp3",
+      "tempo_bpm": 76,
+      "duration_seconds": 37.895,
+      "peak_dbfs": -8.18,
+      "rms_dbfs": -22.0,
+      "boundary_sample_delta": 0.001513,
+      "decoded_peak_dbfs": -8.65,
+      "decoded_samples": 1671158,
+      "boundary_rms_dbfs": -24.56,
+      "bytes": 455670
+    },
+    {
+      "file": "kham-pha.mp3",
+      "tempo_bpm": 84,
+      "duration_seconds": 34.286,
+      "peak_dbfs": -7.92,
+      "rms_dbfs": -22.0,
+      "boundary_sample_delta": 0.002708,
+      "decoded_peak_dbfs": -8.42,
+      "decoded_samples": 1512000,
+      "boundary_rms_dbfs": -25.01,
+      "bytes": 412410
+    },
+    {
+      "file": "huong-dan.mp3",
+      "tempo_bpm": 66,
+      "duration_seconds": 43.636,
+      "peak_dbfs": -6.82,
+      "rms_dbfs": -22.0,
+      "boundary_sample_delta": 0.006514,
+      "decoded_peak_dbfs": -7.26,
+      "decoded_samples": 1924364,
+      "boundary_rms_dbfs": -24.42,
+      "bytes": 524633
+    },
+    {
+      "file": "gioi-thieu.mp3",
+      "tempo_bpm": 70,
+      "duration_seconds": 41.143,
+      "peak_dbfs": -7.59,
+      "rms_dbfs": -22.0,
+      "boundary_sample_delta": 0.006503,
+      "decoded_peak_dbfs": -8.07,
+      "decoded_samples": 1814400,
+      "boundary_rms_dbfs": -24.33,
+      "bytes": 494541
+    }
+  ]
+}

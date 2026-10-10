@@ -1,0 +1,1 @@
+﻿(async()=>{try{const r=await fetch('http://127.0.0.1:9223/json/list',{signal:AbortSignal.timeout(3000)});const tabs=await r.json();console.log(tabs.filter(t=>t.type==='page'&&/^http:\/\/(127\.0\.0\.1|localhost):3000/.test(t.url)).map(t=>({id:t.id,url:t.url})));}catch(e){console.log('Browser connection unavailable:',e.message);}})();

@@ -1,0 +1,81 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const { createApp } = require('./server.cjs');
+const selection = { 'Kiểu ảnh': 'Ảnh toàn thân', 'Loại trang phục': 'Áo dài', 'Sự kiện': 'Chụp ảnh', 'Bối cảnh': 'Phố cổ', 'Phong cách': 'Năng động', 'Màu yêu thích': 'xanh mint', 'Phụ kiện yêu thích': 'Túi mini' };
+const photo = { mimeType: 'image/png', data: Buffer.concat([Buffer.from('89504e470d0a1a0a', 'hex'), Buffer.alloc(50)]).toString('base64') };
+
+test('Static assets are compressed, revalidated and keep CSP; API results are never cached', async t => {
+  const server=createApp();await new Promise(r=>server.listen(0,'127.0.0.1',r));
+  t.after(()=>new Promise(r=>server.close(r)));
+  const base='http://127.0.0.1:'+server.address().port;
+  for(const asset of ['/','/map.js','/app.js','/destinations.js','/site.js','/style.css','/site.css','/collection-art/heritage-6.svg']) {
+    const original=await fetch(base+asset,{headers:{'Accept-Encoding':'identity'}});
+    assert.equal(original.status,200);
+    const content=await original.text();
+    const packed=await fetch(base+asset,{headers:{'Accept-Encoding':'gzip'}});
+    assert.equal(packed.headers.get('content-encoding'),'gzip');
+    assert.equal(await packed.text(),content);
+    assert.ok(Number(packed.headers.get('content-length')) < Buffer.byteLength(content)*0.8);
+    assert.match(packed.headers.get('content-security-policy'),/script-src 'self'/);
+    const cached=await fetch(base+asset,{headers:{'If-None-Match':packed.headers.get('etag')}});
+    assert.equal(cached.status,304);
+    const refused=await fetch(base+asset,{headers:{'Accept-Encoding':'gzip;q=0, identity'}});
+    assert.equal(refused.headers.get('content-encoding'),null);
+  }
+  assert.equal((await fetch(base+'/api/status')).headers.get('cache-control'),'no-store');
+});
+test('Large private image results use lossless gzip transport without caching or changing photo bytes', async t => {
+  const { randomBytes } = require('node:crypto');
+  const server=createApp({workerToken:'gzip-worker',moderate:async()=>({approved:true})});
+  await new Promise(r=>server.listen(0,'127.0.0.1',r));t.after(()=>new Promise(r=>server.close(r)));
+  const base='http://127.0.0.1:'+server.address().port;
+  const post=async(route,data,token)=>{const r=await fetch(base+route,{method:'POST',headers:{'Content-Type':'application/json',...(token?{authorization:'Bearer '+token}:{})},body:JSON.stringify(data)});assert.ok(r.ok);return r.json();};
+  await post('/api/worker/claim',{ready:true},'gzip-worker');
+  const job=await post('/api/jobs',{selection,photo});
+  const {job:claimed}=await post('/api/worker/claim',{ready:true},'gzip-worker');
+  const original={mimeType:'image/png',data:randomBytes(60000).toString('base64')};
+  await post('/api/worker/complete',{id:job.id,lease:claimed.lease,success:true,images:[original,original]},'gzip-worker');
+  const get=encoding=>fetch(base+'/api/jobs/'+job.id,{headers:{authorization:'Bearer '+job.token,'Accept-Encoding':encoding}});
+  const compressed=await get('gzip');
+  assert.equal(compressed.headers.get('content-encoding'),'gzip');
+  assert.equal(compressed.headers.get('cache-control'),'no-store');
+  assert.deepEqual((await compressed.json()).images,[original,original]);
+  const identity=await get('gzip;q=0, identity');
+  assert.equal(identity.headers.get('content-encoding'),null);
+  assert.deepEqual((await identity.json()).images,[original,original]);
+  assert.ok(Number(compressed.headers.get('content-length'))<Number(identity.headers.get('content-length')));
+});
+test('Private Flow job lifecycle, worker authentication, no duplicate claims and expiration', async t => {
+  let now = Date.now();
+  const server = createApp({ workerToken: 'test-worker-secret', clock: () => now, moderate: async () => ({ approved: true }) });
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  t.after(() => new Promise(resolve => server.close(resolve)));
+  const base = 'http://127.0.0.1:' + server.address().port;
+  const req = async (route, body, token, method) => {
+    const r = await fetch(base + route, { method: method || (body ? 'POST' : 'GET'), headers: { ...(body ? { 'Content-Type': 'application/json' } : {}), ...(token ? { authorization: 'Bearer ' + token } : {}) }, body: body ? JSON.stringify(body) : undefined });
+    return { status: r.status, data: await r.json() };
+  };
+  assert.equal((await req('/api/jobs', { selection, photo })).status, 503);
+  assert.equal((await req('/api/worker/claim', { ready: true }, 'wrong')).status, 401);
+  const preview = await req('/api/preview', { selection });
+  assert.equal(preview.status, 200); assert.equal(preview.data.looks.length, 2);
+  await req('/api/worker/claim', { ready: true }, 'test-worker-secret');
+  assert.equal((await req('/api/jobs', { selection, photo: { ...photo, data: '<svg>' } })).status, 400);
+  const submitted = await req('/api/jobs', { selection, photo }); assert.equal(submitted.status, 202);
+  const job = submitted.data;
+  assert.equal((await req('/api/jobs/' + job.id, null, 'wrong')).status, 404);
+  const claim = (await req('/api/worker/claim', { ready: true }, 'test-worker-secret')).data.job;
+  assert.equal(claim.photo.data, photo.data); assert.equal(claim.prompts.length, 2);
+  assert.equal((await req('/api/worker/claim', { ready: true }, 'test-worker-secret')).data.job, null);
+  assert.equal((await req('/api/worker/complete', { id: job.id, lease: 'wrong', success: true, images: [photo, photo] }, 'test-worker-secret')).status, 409);
+  assert.equal((await req('/api/worker/complete', { id: job.id, lease: claim.lease, success: true, images: [photo] }, 'test-worker-secret')).status, 400);
+  assert.equal((await req('/api/worker/complete', { id: job.id, lease: claim.lease, success: true, images: [photo, photo] }, 'test-worker-secret')).status, 200);
+  const result = (await req('/api/jobs/' + job.id, null, job.token)).data;
+  assert.equal(result.status, 'succeeded'); assert.equal(result.images.length, 2); assert.equal(result.photo, undefined); assert.equal(result.prompts, undefined);
+  await req('/api/jobs/' + job.id, null, job.token, 'DELETE');
+  assert.equal((await req('/api/jobs/' + job.id, null, job.token)).status, 404);
+  const expired = (await req('/api/jobs', { selection, photo })).data;
+  now += 9 * 60000;
+  assert.equal((await req('/api/jobs/' + expired.id, null, expired.token)).data.status, 'failed');
+  assert.equal((await req('/api/status')).data.ready, false);
+});

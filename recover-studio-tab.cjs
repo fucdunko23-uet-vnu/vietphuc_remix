@@ -1,0 +1,5 @@
+// Recover only the unresponsive AI Studio editor tab through Chrome DevTools.
+(async()=>{const endpoint='http://127.0.0.1:9223';const version=await(await fetch(endpoint+'/json/version')).json();const targets=await(await fetch(endpoint+'/json/list')).json();const editor=targets.find(t=>t.type==='page'&&t.url.startsWith('https://aistudio.google.com/apps/'));if(!editor)throw new Error('Editor tab not found');
+const ws=new WebSocket(version.webSocketDebuggerUrl);await new Promise((r,j)=>{ws.onopen=r;ws.onerror=j});let seq=0;const pending=new Map();ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.id&&pending.has(m.id)){pending.get(m.id)(m);pending.delete(m.id)}};const send=(method,params)=>new Promise(r=>{const id=++seq;pending.set(id,r);ws.send(JSON.stringify({id,method,params}));});
+await send('Target.closeTarget',{targetId:editor.id});await send('Target.createTarget',{url:editor.url});ws.close();console.log('Reopened the AI Studio editor tab. Other browser tabs preserved.');
+})().catch(e=>{console.error(e.message);process.exitCode=1});

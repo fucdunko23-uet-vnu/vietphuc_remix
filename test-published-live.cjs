@@ -1,0 +1,22 @@
+const {chromium}=require('D:/n8n/node_modules/playwright-core');
+const path=require('node:path');
+const fs=require('node:fs');
+(async()=>{const b=await chromium.connectOverCDP('http://127.0.0.1:9223');try{
+const p=await b.contexts()[0].newPage();const errors=[];p.on('pageerror',e=>errors.push(e.message));
+const url=JSON.parse(fs.readFileSync('D:/n8n/flow-automation/worker-config.json','utf8')).appUrl;
+await p.goto(url+'/#thu-do',{waitUntil:'domcontentloaded'});
+await p.locator('#photo').setInputFiles(path.join(__dirname,'test-assets/flow-fictional-person.jpg'));
+await p.locator('#generate').waitFor();
+await p.locator('#generate').click({timeout:45000});
+console.log('Submitted fictional reference through the published form.');
+await p.locator('#results').waitFor({state:'visible',timeout:480000});
+if(await p.locator('.look-image').count()!==2)throw new Error('Expected two real image cards.');
+const txt=await p.locator('#results').innerText();if(txt.includes('undefined'))throw new Error('Undefined result field');
+const images=await p.locator('.look-image').evaluateAll(es=>es.map(e=>({src:e.src,width:e.naturalWidth,height:e.naturalHeight})));
+if(images.some(i=>i.width<500||i.height<500)||images[0].src===images[1].src)throw new Error('Invalid or duplicate images.');
+for(let i=0;i<images.length;i++)fs.writeFileSync(path.join(__dirname,'test-assets/published-tryon-'+(i+1)+'.png'),Buffer.from(images[i].src.split(',')[1],'base64'));
+await p.screenshot({path:'D:/n8n/flow-automation/published-result.png',fullPage:true});
+if(errors.length)throw new Error(errors.join('; '));
+console.log('PASS: public form → cloud job → local Flow browser → two distinct real images → result cards.');
+console.log('URL: '+url);
+}finally{await b.close()}})().catch(e=>{console.error(e.message);process.exitCode=1});

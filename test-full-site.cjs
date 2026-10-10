@@ -1,0 +1,12 @@
+const {chromium}=require('D:/n8n/node_modules/playwright-core');
+const assert=require('node:assert/strict');
+(async()=>{const b=await chromium.connectOverCDP('http://127.0.0.1:9223');try{const p=await b.contexts()[0].newPage();const errors=[];p.on('pageerror',e=>errors.push(e.message));const base=process.argv[2]||'http://127.0.0.1:3000';await p.goto(base);
+await p.locator('[data-page="trang-chu"]').waitFor({state:'visible'});
+await p.screenshot({path:'D:/n8n/flow-automation/site-home.png',fullPage:true});
+await p.locator('#site-nav a[href="#kham-pha"]').click();await p.locator('[data-filter="Áo ngũ thân"]').click();assert.equal(await p.locator('[data-page="kham-pha"] .collection-card:visible').count(),2);
+await p.locator('[data-page="kham-pha"] [data-preset="1"]').click();await p.locator('[data-page="thu-do"]').waitFor({state:'visible'});assert.equal(await p.locator('[name="Loại trang phục"]').inputValue(),'Áo ngũ thân');assert.equal(await p.locator('[name="Bối cảnh"]').inputValue(),'Sân vườn');await p.locator('#preview').click();await p.locator('#results').waitFor({state:'visible'});assert.equal(await p.locator('.look-card').count(),2);assert.ok(!(await p.locator('#results').innerText()).includes('undefined'));
+await p.locator('#site-nav a[href="#huong-dan"]').click();await p.locator('summary').first().click();assert.equal(await p.locator('details[open]').count(),1);
+await p.locator('#site-nav a[href="#gioi-thieu"]').click();await p.goBack();await p.locator('[data-page="huong-dan"]').waitFor({state:'visible'});
+await p.setViewportSize({width:390,height:844});await p.locator('#menu-toggle').click();await p.locator('#site-nav a[href="#trang-chu"]').click();await p.waitForFunction(()=>document.querySelector('#menu-toggle').getAttribute('aria-expanded')==='false');assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await p.screenshot({path:'D:/n8n/flow-automation/site-home-mobile.png',fullPage:true});
+for(const route of ['kham-pha','thu-do','huong-dan','gioi-thieu']){await p.goto(base+'/#'+route);await p.locator('[data-page="'+route+'"]').waitFor({state:'visible'});assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route+' overflow');}
+assert.deepEqual(errors,[]);console.log('PASS: five routes, browser back/deep links, mobile menu, collection filtering, preset transfer, fitting-room preview, FAQ, no JS errors.');await p.close();}finally{await b.close()}})().catch(e=>{console.error(e.message);process.exitCode=1});

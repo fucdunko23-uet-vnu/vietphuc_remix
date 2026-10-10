@@ -1,0 +1,14 @@
+{
+  "name": "viet-phuc-remix-ai-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Viet phuc Remix: photo try-on with a connected Google Flow browser worker",
+  "scripts": {
+    "start": "node server.cjs",
+    "dev": "node server.cjs",
+    "test": "node --test server.test.cjs destinations.test.cjs moderation.test.cjs caption.test.cjs",
+    "build": "node -e \"for (const file of ['server.cjs','styling.cjs','moderation.cjs','caption.cjs','public/music.js','public/app.js','public/destinations.js','public/garment-preview.js','public/guardrails.js','public/map.js','public/site.js']) require('node:child_process').execFileSync(process.execPath,['--check',file],{stdio:'inherit'})\"",
+    "lint": "npm run build"
+  },
+  "engines": { "node": ">=22" }
+}

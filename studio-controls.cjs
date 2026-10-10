@@ -1,0 +1,2 @@
+const {chromium}=require('D:/n8n/node_modules/playwright-core');
+(async()=>{const b=await chromium.connectOverCDP('http://127.0.0.1:9223');try{const p=b.contexts()[0].pages().find(p=>p.url().includes('aistudio.google'));console.log(JSON.stringify(await p.locator('button').evaluateAll(es=>es.filter(e=>e.getBoundingClientRect().width>0).map(e=>({aria:e.getAttribute('aria-label'),text:e.innerText,title:e.getAttribute('title')})))));}finally{await b.close()}})();

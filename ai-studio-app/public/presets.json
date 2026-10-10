@@ -1,0 +1,164 @@
+[
+  {
+    "Loại trang phục": "Áo dài",
+    "Bối cảnh": "Phố cổ",
+    "Màu yêu thích": "xanh mint",
+    "Phong cách": "Năng động",
+    "Phụ kiện yêu thích": "Túi mini",
+    "Sự kiện": "Chụp ảnh",
+    "Địa điểm": "general"
+  },
+  {
+    "Loại trang phục": "Áo ngũ thân",
+    "Bối cảnh": "Sân vườn",
+    "Màu yêu thích": "xanh navy",
+    "Phong cách": "Thanh lịch",
+    "Phụ kiện yêu thích": "Quạt giấy",
+    "Sự kiện": "Lễ hội",
+    "Địa điểm": "general"
+  },
+  {
+    "Loại trang phục": "Áo tứ thân",
+    "Bối cảnh": "Sân vườn",
+    "Màu yêu thích": "hồng phấn",
+    "Phong cách": "Thanh lịch",
+    "Phụ kiện yêu thích": "Không dùng phụ kiện",
+    "Sự kiện": "Lễ hội",
+    "Địa điểm": "general"
+  },
+  {
+    "Loại trang phục": "Áo dài",
+    "Bối cảnh": "Sân trường",
+    "Màu yêu thích": "trắng ngà",
+    "Phong cách": "Tối giản",
+    "Phụ kiện yêu thích": "Túi tote",
+    "Sự kiện": "Sự kiện trường",
+    "Địa điểm": "general"
+  },
+  {
+    "Loại trang phục": "Áo ngũ thân",
+    "Bối cảnh": "Phố cổ",
+    "Màu yêu thích": "be",
+    "Phong cách": "Tối giản",
+    "Phụ kiện yêu thích": "Không dùng phụ kiện",
+    "Sự kiện": "Đi chơi",
+    "Địa điểm": "general"
+  },
+  {
+    "Loại trang phục": "Áo tứ thân",
+    "Bối cảnh": "Phố cổ",
+    "Màu yêu thích": "đỏ trầm",
+    "Phong cách": "Năng động",
+    "Phụ kiện yêu thích": "Quạt giấy",
+    "Sự kiện": "Chụp ảnh",
+    "Địa điểm": "general"
+  },
+  {
+    "Loại trang phục": "Áo Nhật Bình",
+    "Bối cảnh": "Đại Nội Huế",
+    "Màu yêu thích": "tím hoa cà hoàng gia",
+    "Phong cách": "Thanh lịch",
+    "Phụ kiện yêu thích": "Quạt giấy",
+    "Sự kiện": "Lễ hội",
+    "Địa điểm": "tthue"
+  },
+  {
+    "Loại trang phục": "Áo Nhật Bình",
+    "Bối cảnh": "Bờ sông Hương",
+    "Màu yêu thích": "vàng hoàng yến",
+    "Phong cách": "Thanh lịch",
+    "Phụ kiện yêu thích": "Khăn lụa",
+    "Sự kiện": "Chụp ảnh",
+    "Địa điểm": "tthue"
+  },
+  {
+    "Loại trang phục": "Áo giao lĩnh",
+    "Bối cảnh": "Hoàng thành Thăng Long",
+    "Màu yêu thích": "đỏ thẫm",
+    "Phong cách": "Thanh lịch",
+    "Phụ kiện yêu thích": "Quạt giấy",
+    "Sự kiện": "Chụp ảnh",
+    "Địa điểm": "hanoi"
+  },
+  {
+    "Loại trang phục": "Áo giao lĩnh",
+    "Bối cảnh": "Phố cổ Hà Nội",
+    "Màu yêu thích": "xanh lục bảo",
+    "Phong cách": "Tối giản",
+    "Phụ kiện yêu thích": "Không dùng phụ kiện",
+    "Sự kiện": "Đi chơi",
+    "Địa điểm": "hanoi"
+  },
+  {
+    "Loại trang phục": "Áo bà ba",
+    "Bối cảnh": "Bưu điện Sài Gòn",
+    "Màu yêu thích": "nâu đất mộc mạc",
+    "Phong cách": "Năng động",
+    "Phụ kiện yêu thích": "Khăn lụa",
+    "Sự kiện": "Đi chơi",
+    "Địa điểm": "hcm"
+  },
+  {
+    "Loại trang phục": "Áo bà ba",
+    "Bối cảnh": "Chợ nổi Cái Răng",
+    "Màu yêu thích": "xanh cốm dịu mát",
+    "Phong cách": "Thanh lịch",
+    "Phụ kiện yêu thích": "Quạt giấy",
+    "Sự kiện": "Chụp ảnh",
+    "Địa điểm": "cantho"
+  },
+  {
+    "Loại trang phục": "Váy xòe",
+    "Bối cảnh": "Bản Cát Cát",
+    "Màu yêu thích": "chàm thêu chỉ đỏ",
+    "Phong cách": "Năng động",
+    "Phụ kiện yêu thích": "Không dùng phụ kiện",
+    "Sự kiện": "Đi chơi",
+    "Địa điểm": "laocai"
+  },
+  {
+    "Loại trang phục": "Áo cóm và váy dài",
+    "Bối cảnh": "Đồi chè Mộc Châu",
+    "Màu yêu thích": "trắng tuyết hàng khuy bướm",
+    "Phong cách": "Thanh lịch",
+    "Phụ kiện yêu thích": "Khăn Piêu",
+    "Sự kiện": "Lễ hội",
+    "Địa điểm": "sonla"
+  },
+  {
+    "Loại trang phục": "Trang phục truyền thống Lô Lô",
+    "Bối cảnh": "Cao nguyên đá Đồng Văn",
+    "Màu yêu thích": "đen chàm ghép lập thể",
+    "Phong cách": "Năng động",
+    "Phụ kiện yêu thích": "Không dùng phụ kiện",
+    "Sự kiện": "Lễ hội",
+    "Địa điểm": "hagiang"
+  },
+  {
+    "Loại trang phục": "Trang phục truyền thống Ê Đê",
+    "Bối cảnh": "Buôn Ako Dhông",
+    "Màu yêu thích": "đen dệt hoa văn chỉ đỏ vàng",
+    "Phong cách": "Thanh lịch",
+    "Phụ kiện yêu thích": "Không dùng phụ kiện",
+    "Sự kiện": "Lễ hội",
+    "Địa điểm": "daklak"
+  },
+  {
+    "Loại trang phục": "Trang phục truyền thống Ba Na",
+    "Bối cảnh": "Không gian nhà rông Gia Lai",
+    "Màu yêu thích": "chàm viền hoa văn kỷ hà",
+    "Phong cách": "Năng động",
+    "Phụ kiện yêu thích": "Không dùng phụ kiện",
+    "Sự kiện": "Lễ hội",
+    "Địa điểm": "gialai"
+  },
+  {
+    "Loại trang phục": "Áo ngũ thân",
+    "Bối cảnh": "Nhà vườn Huế",
+    "Màu yêu thích": "lam ngọc quyền quý",
+    "Phong cách": "Thanh lịch",
+    "Phụ kiện yêu thích": "Quạt giấy",
+    "Sự kiện": "Lễ hội",
+    "Địa điểm": "tthue"
+  }
+]

@@ -1,0 +1,5 @@
+{
+  "appUrl": "http://127.0.0.1:3000",
+  "cdpUrl": "http://127.0.0.1:9223",
+  "workerToken": "REPLACE_WITH_FLOW_WORKER_TOKEN_FROM_BACKEND"
+}

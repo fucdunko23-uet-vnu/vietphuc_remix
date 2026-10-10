@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="outfit-scene" viewBox="0 0 480 560" width="480" height="560" role="img" aria-labelledby="collection-scope-2-vpr-collection-1-title" data-garment="Áo ngũ thân" data-background="Sân vườn" data-avatar="Tóc dài" data-accessory="Quạt giấy" data-shoe="sneakers" style="display:block;width:100%;height:auto;overflow:hidden">
+<title id="collection-scope-2-vpr-collection-1-title">Bản phối minh họa Áo ngũ thân, nhân vật tóc dài, bối cảnh sân vườn, quạt giấy</title>
+<defs>
+<radialGradient id="collection-scope-2-vpr-collection-1-halo">
+<stop offset="0" stop-color="#FFFDF5" stop-opacity=".73"/>
+<stop offset="1" stop-color="#FFFDF5" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="collection-scope-2-vpr-collection-1-ground" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#3C5041" stop-opacity=".14"/>
+<stop offset="1" stop-color="#3C5041" stop-opacity=".04"/>
+</linearGradient>
+</defs>
+<g data-layer="background">
+<rect width="480" height="560" fill="#E5EDE4"/>
+<circle cx="355" cy="86" r="40" fill="#FFF5D7"/>
+<path d="M0 287Q90 242 208 277T480 269V560H0Z" fill="#BACDB3"/>
+<path d="M0 337Q115 299 252 330T480 314V560H0Z" fill="#CBD8BE"/>
+<path d="M223 310H272Q272 389 342 434Q411 477 433 560H45Q96 447 185 411Q249 384 223 310Z" fill="#E8E2CF"/>
+<path d="M57 213Q71 291 62 366M63 281L24 250M65 259L98 229" fill="none" stroke="#899880" stroke-width="9" stroke-linecap="round"/>
+<g fill="#90AC8B">
+<ellipse cx="32" cy="193" rx="74" ry="59"/>
+<ellipse cx="81" cy="154" rx="67" ry="65"/>
+<ellipse cx="112" cy="219" rx="54" ry="48"/>
+</g>
+<g fill="#A6BE9A">
+<ellipse cx="31" cy="149" rx="54" ry="42"/>
+<ellipse cx="90" cy="128" rx="42" ry="35"/>
+</g>
+<path d="M425 197Q409 281 418 349M418 257L451 226" fill="none" stroke="#97A183" stroke-width="8" stroke-linecap="round"/>
+<g fill="#A1B894">
+<ellipse cx="413" cy="174" rx="63" ry="65"/>
+<ellipse cx="471" cy="194" rx="60" ry="52"/>
+</g>
+<ellipse cx="389" cy="152" rx="37" ry="36" fill="#B6C8A5"/>
+<path d="M345 354Q389 342 451 357L449 369Q389 355 347 366Z" fill="#AAAFA0"/>
+<path d="M357 367V388M435 367V389" stroke="#919D8D" stroke-width="7"/>
+<g fill="#8FAB87">
+<ellipse cx="34" cy="372" rx="42" ry="20"/>
+<ellipse cx="81" cy="388" rx="29" ry="20"/>
+<ellipse cx="468" cy="398" rx="48" ry="25"/>
+</g>
+<g stroke="#829D7D" stroke-width="2">
+<path d="M48 425V392M63 434V408M434 428V403M452 438V416"/>
+</g>
+<g fill="#D49B8D">
+<circle cx="48" cy="392" r="6"/>
+<circle cx="63" cy="408" r="5"/>
+<circle cx="434" cy="403" r="6"/>
+<circle cx="452" cy="416" r="5"/>
+</g>
+<path d="M130 473L153 462L171 470L153 482ZM347 485L366 483L382 495L359 500ZM97 525L126 510L146 519L125 535Z" fill="#D1D0BC"/>
+</g>
+<ellipse cx="240" cy="286" rx="174" ry="238" fill="url(#collection-scope-2-vpr-collection-1-halo)"/>
+<g data-layer="shadow">
+<ellipse cx="241" cy="518" rx="75" ry="12" fill="url(#collection-scope-2-vpr-collection-1-ground)"/>
+<ellipse cx="241" cy="517" rx="48" ry="5" fill="#445842" opacity=".09"/>
+</g>
+<g data-layer="hair-back">
+<path d="M214 105Q237 88 260 103Q278 113 273 148L279 207Q260 220 252 207L241 172L229 209Q216 218 203 207L209 151Q202 124 214 105Z" fill="#3E3933"/>
+<path d="M213 148L210 201M267 144L272 202" stroke="#5A5045" stroke-width="2" fill="none"/>
+</g>
+<g data-layer="body">
+<path d="M228 152H252L255 177Q240 188 225 177Z" fill="#DBA681"/>
+<path d="M229 155Q240 164 252 155L251 168Q239 174 228 166Z" fill="#B57E5B" opacity=".23"/>
+<path d="M208 490H230V507H208ZM250 490H272V507H250Z" fill="#E8B893"/>
+</g>
+<g data-layer="shoes" data-shoe="sneakers">
+<path d="M205 495H230L234 509Q231 519 195 517Q190 512 197 508Z" fill="#F9F5E9" stroke="#A3A99C" stroke-width="1.2"/>
+<path d="M250 495H275L283 508Q290 517 251 518Q245 514 247 509Z" fill="#F9F5E9" stroke="#A3A99C" stroke-width="1.2"/>
+<path d="M195 513H232M249 513H283" stroke="#D7D7C9" stroke-width="3"/>
+<path d="M209 499L221 503M206 503L218 507M259 499L271 503M262 503L274 507" stroke="#403A38" stroke-width="1.5" stroke-linecap="round"/>
+</g>
+<g data-layer="trousers">
+<path d="M212 294H268L277 501Q265 507 247 501L241 352L233 501Q217 507 203 501Z" fill="#F6F2E9"/>
+<path d="M223 402L217 496M258 402L263 496" stroke="#313D34" stroke-opacity=".12" stroke-width="2"/>
+</g>
+<g data-layer="garment">
+<path d="M216 177L192 185Q180 191 175 214L153 289L158 325L186 325L190 286L212 223Z" fill="#263A59"/>
+<path d="M264 177L288 185Q300 191 305 214L327 289L322 325L294 325L290 286L268 223Z" fill="#263A59"/>
+<path d="M219 174L195 184L200 264L188 455Q240 468 292 455L280 264L285 184L261 174Z" fill="#263A59"/>
+<path d="M220 174V189Q240 197 260 189V174L254 168H226Z" fill="#263A59" stroke="#313D34" stroke-opacity=".23" stroke-width="1.5"/>
+<path d="M250 187Q253 209 276 215L274 325M273 325L280 451M208 256L200 451M231 322L226 458M187 211L166 290M293 211L315 290" fill="none" stroke="#313D34" stroke-opacity=".19" stroke-width="1.5"/>
+<path d="M211 199L210 249M207 274L197 440M279 275L287 438" fill="none" stroke="#FFFFFF" stroke-opacity=".15" stroke-width="4" stroke-linecap="round"/>
+<path d="M161 312H187M293 312H320M193 444Q239 454 287 444" stroke="#F6F2E9" stroke-opacity=".55" stroke-width="2.5" fill="none"/>
+<g fill="#403A38" stroke="#313D34" stroke-opacity=".25" stroke-width=".7">
+<circle cx="253" cy="192" r="2.7"/>
+<circle cx="264" cy="207" r="2.7"/>
+<circle cx="276" cy="222" r="2.7"/>
+<circle cx="275" cy="245" r="2.7"/>
+<circle cx="274" cy="268" r="2.7"/>
+</g>
+</g>
+<g data-layer="face">
+<ellipse cx="214" cy="134" rx="4.7" ry="7" fill="#DBA681"/>
+<ellipse cx="266" cy="134" rx="4.7" ry="7" fill="#DBA681"/>
+<path d="M217 116Q239 103 263 116L262 141Q259 157 240 163Q221 157 218 141Z" fill="#E8B893"/>
+<path d="M218 122Q220 151 240 160Q226 157 221 149Q216 138 218 122Z" fill="#DBA681" opacity=".65"/>
+<path d="M225 130Q229 127 233 130M248 130Q252 127 256 130" fill="none" stroke="#594739" stroke-width="1.6" stroke-linecap="round"/>
+<ellipse cx="230" cy="134" rx="1.5" ry="1.8" fill="#443E35"/>
+<ellipse cx="251" cy="134" rx="1.5" ry="1.8" fill="#443E35"/>
+<path d="M240 133L238 141L242 142" fill="none" stroke="#BB8566" stroke-width="1" stroke-linecap="round"/>
+<path d="M234 148Q240 152 247 147" fill="none" stroke="#A36355" stroke-width="1.4" stroke-linecap="round"/>
+<ellipse cx="226" cy="143" rx="4.7" ry="2.5" fill="#D99882" opacity=".45"/>
+<ellipse cx="254" cy="143" rx="4.7" ry="2.5" fill="#D99882" opacity=".45"/>
+</g>
+<g data-layer="hair-front">
+<path d="M213 126Q208 105 226 101Q251 88 267 111L266 130Q253 124 244 107Q231 123 213 126Z" fill="#3E3933"/>
+<path d="M219 112Q228 103 239 102" stroke="#625548" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g data-layer="hands">
+<path d="M169 322H182L181 339Q176 347 171 342L167 334Z" fill="#E8B893"/>
+<path d="M299 322H312L314 334L310 342Q305 347 300 339Z" fill="#E8B893"/>
+<path d="M172 330L173 338M309 330L308 338" stroke="#BC8667" stroke-width="1" stroke-linecap="round"/>
+</g>
+<g data-layer="accessories">
+<g transform="rotate(-22 174 335)">
+<path d="M174 335L132 294Q174 251 216 294Z" fill="#F6F2E9" stroke="#403A38" stroke-width="2"/>
+<path d="M174 335L143 284M174 335L158 276M174 335L174 273M174 335L190 276M174 335L205 284" stroke="#403A38" stroke-opacity=".65" stroke-width="1.3"/>
+<path d="M140 295Q174 265 208 295" fill="none" stroke="#263A59" stroke-width="5" stroke-opacity=".65"/>
+<path d="M174 335L174 345" stroke="#9A7756" stroke-width="4" stroke-linecap="round"/>
+</g>
+</g>
+</svg>

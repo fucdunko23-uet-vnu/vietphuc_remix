@@ -1,0 +1,51 @@
+const assert=require('node:assert/strict'),path=require('node:path');
+const {createApp}=require('./ai-studio-app/server.cjs');
+const {chromium}=require('D:/n8n/node_modules/playwright-core');
+(async()=>{
+ const server=createApp({workerToken:'ui-test'});await new Promise(r=>server.listen(0,'127.0.0.1',r));
+ const base=process.env.VPR_TEST_URL||'http://127.0.0.1:'+server.address().port;
+ const b=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
+ try{const p=await b.newPage({viewport:{width:1440,height:1000}});const errors=[];p.on('pageerror',e=>errors.push(e.message));
+  await p.route(/https:\/\/fonts\./,r=>r.abort());
+  await p.goto(base+'/#ban-do',{waitUntil:'domcontentloaded'});await p.locator('#vietnam-svg').waitFor();
+  const region=p.locator('#pin-tay-bac');await region.click({force:true});
+  await p.locator('[data-chip-prov="laocai"]').click();await p.locator('#callout-try-btn').click();
+  await p.waitForURL('**#thu-do');assert.equal(await p.locator('#destination-select').inputValue(),'laocai');
+  assert.deepEqual(await p.locator('#garment-select option').allTextContents(),['Váy xòe']);
+  assert.equal(await p.locator('#background-select').inputValue(),'Thung lũng Mường Hoa');
+  await p.getByRole('button',{name:'Bản Cát Cát',exact:true}).click();
+  const selectedScene=p.locator('#destination-scenes [aria-pressed="true"]');
+  assert.equal(await selectedScene.count(),1);
+  assert.equal(await selectedScene.locator('.destination-scene-name').innerText(),'Bản Cát Cát');
+  assert.equal(await selectedScene.evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(224, 235, 221)','Selected scene keeps a light background');
+  assert.equal(await selectedScene.locator('.destination-scene-status').isVisible(),true);
+  assert.equal(await selectedScene.evaluate(el=>getComputedStyle(el).getPropertyValue('--destination-accent').trim()),'#416b66','Step 3 inherits destination accent');
+  await p.locator('#step-panel-3').scrollIntoViewIfNeeded();
+  await p.screenshot({path:'output/step3-scenes-desktop.png'});
+  await p.locator('#scene-detail').fill('Sương nhẹ, ít người');await p.locator('#scene-light').selectOption('Hoàng hôn');
+  await p.locator('#preview').click();await p.locator('#results').waitFor({state:'visible'});
+  assert.match(await p.locator('#cards').innerText(),/Váy xòe/);assert.match(await p.locator('#cards').innerText(),/Bản Cát Cát/);
+  await p.reload();assert.equal(await p.locator('#destination-select').inputValue(),'laocai');
+  await p.goto(base+'/#ban-do');await p.locator('#pin-hue-trung-bo').focus();await p.locator('#pin-hue-trung-bo').press('Enter');
+  await p.locator('#callout-try-btn').click();
+  await p.waitForFunction(()=>document.querySelector('#destination-select').value==='tthue');
+  assert.equal(await p.locator('#destination-select').inputValue(),'tthue');assert.equal(await p.locator('#garment-select').inputValue(),'Áo Nhật Bình');
+  await p.locator('#destination-select').selectOption('tthue');assert.ok((await p.locator('#garment-select option').allTextContents()).includes('Áo Nhật Bình'));
+  assert.equal(await p.locator('#background-select').inputValue(),'Đại Nội Huế');
+  await p.locator('#destination-select').selectOption('laocai');
+  await p.locator('#photo').setInputFiles(path.join(__dirname,'test-assets/flow-fictional-person.jpg'));
+  await p.locator('#photo-preview').waitFor({state:'visible'});
+  assert.equal(await p.locator('#photo-preview').isVisible(),true);
+  await p.locator('#destination-title').scrollIntoViewIfNeeded();await p.screenshot({path:'D:/n8n/flow-automation/sapa-room-desktop.png'});
+  await p.setViewportSize({width:390,height:844});await p.locator('#destination-title').scrollIntoViewIfNeeded();
+  await p.screenshot({path:'D:/n8n/flow-automation/sapa-room-mobile.png'});
+  assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),'No mobile overflow');
+  await p.emulateMedia({reducedMotion:'reduce'});
+  await p.locator('#step-panel-3').scrollIntoViewIfNeeded();
+  await p.screenshot({path:'output/step3-scenes-mobile.png'});
+  for(const sceneButton of await p.locator('#destination-scenes button').all()){
+    assert.ok(await sceneButton.evaluate(el=>el.scrollWidth<=el.clientWidth),'Scene label fits on mobile');
+  }
+  assert.deepEqual(errors,[]);console.log('PASS: map → Sa Pa, restricted skirt, custom scene preview, refresh, Huế switching, upload and mobile layout.');
+ }finally{await b.close();await new Promise(r=>server.close(r));}
+})().catch(e=>{console.error(e.stack);process.exitCode=1});
